@@ -11,6 +11,7 @@ var colorMaster = "#27e4f9";
 var colorStating = "#ffe333";
 var colorHotfix = "#fd5965";
 var colorRelease = "#52c322";
+var colorUs = "#fb3db5";
 
 var master = gitgraph.branch({ name: "master", column: 1});
 var staging = gitgraph.branch({name: "staging", column: 5});
@@ -36,17 +37,35 @@ master.commit({
   tagColor: colorMaster,
 });
 
-us6170.commit(md);
+us6170.commit({
+  message: "US6170 "+md,
+  dotColor: colorUs,
+});
 
-us6170.commit(md);
+us6170.commit({
+  message: "US6170 "+md,
+  dotColor: colorUs,
+});
 
-us6115.commit(md);
+us6115.commit({
+  message: "US6115 "+md,
+  dotColor: colorUs,
+});
 
-us6145.commit();
+us6145.commit({
+  message: "US6145 "+md,
+  dotColor: colorUs,
+});
 
-us6115.commit(md);
+us6115.commit({
+  message: "US6115 "+md,
+  dotColor: colorUs,
+});
 
-us6170.commit(md);
+us6170.commit({
+  message: "US6170 "+md,
+  dotColor: colorUs,
+});
 
 us6170.merge(staging, {
   tag: "F3156-FreeTrial",
@@ -54,7 +73,10 @@ us6170.merge(staging, {
   tagColor: colorStating,
 });
 
-us6115.commit(md);
+us6115.commit({
+  message: "US6115 "+md,
+  dotColor: colorUs,
+});
 
 hotfix131.commit({
   message: "HOTFIX 1.3.1 : Correction nom agence avec caractéres spéciaux",
@@ -73,17 +95,33 @@ hotfix131.merge(staging, {
   tagColor: colorStating,
 });
 
-us6115.commit(md);
+us6115.commit({
+  message: "US6115 "+md,
+  dotColor: colorUs,
+});
 
-staging.merge(us6115);
+staging.merge(us6115, {
+  dotColor: colorUs,
+});
 
-us6145.commit(md);
+us6145.commit({
+  message: "US6145 coorection suite au hotfix 1.3.1",
+  dotColor: colorUs,
+});
 
-staging.merge(us6145);
+staging.merge(us6145, {
+  dotColor: colorUs,
+});
 
-us6115.commit("correction");
+us6115.commit({
+  message: "US6145 Correction 1",
+  dotColor: colorUs,
+});
 
-us6142.commit(md);
+us6142.commit({
+  message: "US6142 "+md,
+  dotColor: colorUs,
+});
 
 us6115.merge(staging, {
   tag: "F3156-FreeTrial",
@@ -91,7 +129,9 @@ us6115.merge(staging, {
   tagColor: colorStating,
 });
 
-staging.merge(us6145);
+staging.merge(us6145, {
+  dotColor: colorUs,
+});
 
 us6145.merge(staging, {
   tag: "F3156-FreeTrial & v1.4.0",
@@ -108,14 +148,20 @@ release140.merge(staging, {
   dotColor: colorStating,
 });
 
-us6142.commit(md);
+us6142.commit({
+  message: "US6142 "+md,
+  dotColor: colorUs,
+});
 
 release140.commit({
   message: "RELEASE 1.4.0 - Commit pour une rapide correction de derniere minute avant la MET",
   dotColor: colorRelease,
 });
 
-us6142.commit(md);
+us6142.commit({
+  message: "US6142 "+md,
+  dotColor: colorUs,
+});
 
 release140.merge(staging, {
   dotColor: colorStating,
@@ -126,8 +172,10 @@ release140.commit({
   dotColor: colorRelease,
 });
 
-us6142.commit(md);
-
+us6142.commit({
+  message: "US6142 "+md,
+  dotColor: colorUs,
+});
 hotfix132.commit({
   message: "HOTFIX 1.3.2 : Changement d'une fonction de l'api zoho",
   dotColor: colorHotfix,
@@ -139,7 +187,10 @@ hotfix132.merge(master, {
   tagColor: colorMaster,
 });
 
-us6178.commit(md);
+us6178.commit({
+  message: "US6178 "+md,
+  dotColor: colorUs,
+});
 
 hotfix132.merge(release140, {
   dotColor: colorRelease,
@@ -149,7 +200,10 @@ release140.merge(staging, {
   dotColor: colorStating,
 });
 
-us6142.commit(md);
+us6142.commit({
+  message: "US6142 "+md,
+  dotColor: colorUs,
+});
 
 us6142.merge(staging, {
   tag: "F3160-RSSToEmail",
@@ -162,7 +216,10 @@ release140.commit({
   dotColor: colorRelease,
 });
 
-us6178.commit(md);
+us6178.commit({
+  message: "US6178 "+md,
+  dotColor: colorUs,
+});
 
 release140.merge(staging, {
   dotColor: colorStating,
