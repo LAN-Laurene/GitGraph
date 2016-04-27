@@ -7,7 +7,8 @@ var gitgraph = new GitGraph({
 });
 
 var md = "Un commit"; // message par défault
-var dotColorMaster = "#27e4f9";
+var colorMaster = "#27e4f9";
+var colorStating = "#ffe333";
 
 var master = gitgraph.branch({ name: "master", column: 1});
 var staging = gitgraph.branch({name: "staging", column: 5});
@@ -18,16 +19,19 @@ var hotfix131 = master.branch({name: "Hotfix1.3.1-nom_agence_caract_spé", colum
 var us6142 = staging.branch({name: "US6142-pixel_tracking_maintenance", column: 6});
 var release140 = staging.branch({name: "release1.4.0", column: 3});
 var hotfix132 = master.branch({name: "Hotfix1.3.2-nouvelle_api_zoho", column: 2});
-
+var us6178 = staging.branch({name: "US6178-image_certification", column: 7});
 
 /* ***** */
-staging.commit("Initiate commit");
+staging.commit({
+  message: "Initiate commit",
+  dotColor: colorStating,
+});
 
 master.commit({
   message: "Commit version 1.3.0",
   tag: "v1.3.0",
-  dotColor: dotColorMaster,
-  tagColor: dotColorMaster,
+  dotColor: colorMaster,
+  tagColor: colorMaster,
 });
 
 us6170.commit(md);
@@ -42,7 +46,11 @@ us6115.commit(md);
 
 us6170.commit(md);
 
-us6170.merge(staging);
+us6170.merge(staging, {
+  tag: "F3156-FreeTrial",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
 
 us6115.commit(md);
 
@@ -50,11 +58,15 @@ hotfix131.commit("commit de hotfix");
 
 hotfix131.merge(master, {
   tag: "v1.3.1",
-  dotColor: dotColorMaster,
-  tagColor: dotColorMaster,
+  dotColor: colorMaster,
+  tagColor: colorMaster,
 });
 
-hotfix131.merge(staging);
+hotfix131.merge(staging, {
+  tag: "v1.3.1",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
 
 us6115.commit(md);
 
@@ -68,15 +80,25 @@ us6115.commit("correction");
 
 us6142.commit(md);
 
-us6115.merge(staging);
+us6115.merge(staging, {
+  tag: "F3156-FreeTrial",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
 
 staging.merge(us6145);
 
-us6145.merge(staging);
+us6145.merge(staging, {
+  tag: "F3156-FreeTrial & v1.4.0",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
 
 release140.commit("changement du numéro de version.");
 
-release140.merge(staging);
+release140.merge(staging, {
+  dotColor: colorStating,
+});
 
 us6142.commit(md);
 
@@ -84,7 +106,9 @@ release140.commit("commit pour une rapide correction de derniere minute avant la
 
 us6142.commit(md);
 
-release140.merge(staging);
+release140.merge(staging, {
+  dotColor: colorStating,
+});
 
 release140.commit("prendre en compte les changements mineurs suite au retour de test");
 
@@ -94,24 +118,38 @@ hotfix132.commit("hotfix-");
 
 hotfix132.merge(master, {
   tag: "v1.3.2",
-  dotColor: dotColorMaster,
-  tagColor: dotColorMaster,
+  dotColor: colorMaster,
+  tagColor: colorMaster,
 });
+
+us6178.commit(md);
 
 hotfix132.merge(release140);
 
-release140.merge(staging);
+release140.merge(staging, {
+  dotColor: colorStating,
+});
 
 us6142.commit(md);
 
+us6142.merge(staging, {
+  tag: "F3160-RSSToEmail",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
+
 release140.commit("prendre en compte les changements mineurs suite au retour de test");
 
-release140.merge(staging);
+us6178.commit(md);
+
+release140.merge(staging, {
+  tag: "v1.4.0",
+  dotColor: colorStating,
+  tagColor: colorStating,
+});
 
 release140.merge(master, {
   tag: "v1.4.0",
-  dotColor: dotColorMaster,
-  tagColor: dotColorMaster,
+  dotColor: colorMaster,
+  tagColor: colorMaster,
 });
-
-us6142.merge(staging);
