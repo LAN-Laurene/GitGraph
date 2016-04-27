@@ -9,6 +9,7 @@ var gitgraph = new GitGraph({
 var md = "Un commit"; // message par défault
 var colorMaster = "#27e4f9";
 var colorStating = "#ffe333";
+var colorHotfix = "#fd5965";
 
 var master = gitgraph.branch({ name: "master", column: 1});
 var staging = gitgraph.branch({name: "staging", column: 5});
@@ -54,7 +55,10 @@ us6170.merge(staging, {
 
 us6115.commit(md);
 
-hotfix131.commit("commit de hotfix");
+hotfix131.commit({
+  message: "HOTFIX 1.3.1 : Correction nom agence avec caractéres spéciaux",
+  dotColor: colorHotfix,
+});
 
 hotfix131.merge(master, {
   tag: "v1.3.1",
@@ -114,7 +118,10 @@ release140.commit("prendre en compte les changements mineurs suite au retour de 
 
 us6142.commit(md);
 
-hotfix132.commit("hotfix-");
+hotfix132.commit({
+  message: "HOTFIX 1.3.2 : Changement d'une fonction de l'api zoho",
+  dotColor: colorHotfix,
+});
 
 hotfix132.merge(master, {
   tag: "v1.3.2",
@@ -143,9 +150,7 @@ release140.commit("prendre en compte les changements mineurs suite au retour de 
 us6178.commit(md);
 
 release140.merge(staging, {
-  tag: "v1.4.0",
   dotColor: colorStating,
-  tagColor: colorStating,
 });
 
 release140.merge(master, {
