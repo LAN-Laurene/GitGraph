@@ -10,6 +10,7 @@ var md = "Un commit"; // message par défault
 var colorMaster = "#27e4f9";
 var colorStating = "#ffe333";
 var colorHotfix = "#fd5965";
+var colorRelease = "#52c322";
 
 var master = gitgraph.branch({ name: "master", column: 1});
 var staging = gitgraph.branch({name: "staging", column: 5});
@@ -98,7 +99,10 @@ us6145.merge(staging, {
   tagColor: colorStating,
 });
 
-release140.commit("changement du numéro de version.");
+release140.commit({
+  message: "RELEASE 1.4.0 - Changement du numéro de version.",
+  dotColor: colorRelease,
+});
 
 release140.merge(staging, {
   dotColor: colorStating,
@@ -106,7 +110,10 @@ release140.merge(staging, {
 
 us6142.commit(md);
 
-release140.commit("commit pour une rapide correction de derniere minute avant la MET");
+release140.commit({
+  message: "RELEASE 1.4.0 - Commit pour une rapide correction de derniere minute avant la MET",
+  dotColor: colorRelease,
+});
 
 us6142.commit(md);
 
@@ -114,7 +121,10 @@ release140.merge(staging, {
   dotColor: colorStating,
 });
 
-release140.commit("prendre en compte les changements mineurs suite au retour de test");
+release140.commit({
+  message: "RELEASE 1.4.0 - Prendre en compte les changements mineurs suite au retour de test",
+  dotColor: colorRelease,
+});
 
 us6142.commit(md);
 
@@ -131,7 +141,9 @@ hotfix132.merge(master, {
 
 us6178.commit(md);
 
-hotfix132.merge(release140);
+hotfix132.merge(release140, {
+  dotColor: colorRelease,
+});
 
 release140.merge(staging, {
   dotColor: colorStating,
@@ -145,7 +157,10 @@ us6142.merge(staging, {
   tagColor: colorStating,
 });
 
-release140.commit("prendre en compte les changements mineurs suite au retour de test");
+release140.commit({
+  message: "RELEASE 1.4.0 - Seconde prise en compte des changements mineurs suite au retour de test",
+  dotColor: colorRelease,
+});
 
 us6178.commit(md);
 
