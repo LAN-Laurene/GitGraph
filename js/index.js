@@ -7,6 +7,7 @@ var gitgraph = new GitGraph({
 });
 
 var md = "Un commit"; // message par défault
+var dotColorMaster = "#27e4f9";
 
 var master = gitgraph.branch({ name: "master", column: 1});
 var staging = gitgraph.branch({name: "staging", column: 5});
@@ -22,9 +23,15 @@ var hotfix132 = master.branch({name: "Hotfix1.3.2-nouvelle_api_zoho", column: 2}
 /* ***** */
 staging.commit("Initiate commit");
 
-master.commit(md);
+master.commit({
+  message: "Commit version 1.3.0",
+  tag: "v1.3.0",
+  dotColor: dotColorMaster,
+  tagColor: dotColorMaster,
+});
 
 us6170.commit(md);
+
 us6170.commit(md);
 
 us6115.commit(md);
@@ -41,7 +48,12 @@ us6115.commit(md);
 
 hotfix131.commit("commit de hotfix");
 
-hotfix131.merge(master);
+hotfix131.merge(master, {
+  tag: "v1.3.1",
+  dotColor: dotColorMaster,
+  tagColor: dotColorMaster,
+});
+
 hotfix131.merge(staging);
 
 us6115.commit(md);
@@ -53,7 +65,6 @@ us6145.commit(md);
 staging.merge(us6145);
 
 us6115.commit("correction");
-
 
 us6142.commit(md);
 
@@ -81,7 +92,11 @@ us6142.commit(md);
 
 hotfix132.commit("hotfix-");
 
-hotfix132.merge(master);
+hotfix132.merge(master, {
+  tag: "v1.3.2",
+  dotColor: dotColorMaster,
+  tagColor: dotColorMaster,
+});
 
 hotfix132.merge(release140);
 
@@ -93,6 +108,10 @@ release140.commit("prendre en compte les changements mineurs suite au retour de 
 
 release140.merge(staging);
 
-release140.merge(master);
+release140.merge(master, {
+  tag: "v1.4.0",
+  dotColor: dotColorMaster,
+  tagColor: dotColorMaster,
+});
 
 us6142.merge(staging);
