@@ -1,5 +1,5 @@
 var gitgraph = new GitGraph({
-  template: "blackarrow",
+  template: "blackarrow", // blackarrow / metro
   orientation: "vertical",
   mode: "expended",
   elementId: "gitGraph",
@@ -13,16 +13,16 @@ var colorHotfix = "#fd5965";
 var colorRelease = "#52c322";
 var colorUs = "#fb3db5";
 
-var master = gitgraph.branch({ name: "master", column: 1});
-var staging = gitgraph.branch({name: "staging", column: 5});
-var us6170 = staging.branch({name: "US6170-nettoyage_git", column: 6});
-var us6115 = staging.branch({name: "US6115-ajout_colonnes_dashboard", column: 7});
-var us6145 = staging.branch({name: "US6145-invite_mail", column: 8});
-var hotfix131 = master.branch({name: "Hotfix1.3.1-nom_agence_caract_spé", column: 2});
-var us6142 = staging.branch({name: "US6142-pixel_tracking_maintenance", column: 6});
-var release140 = staging.branch({name: "release1.4.0", column: 3});
-var hotfix132 = master.branch({name: "Hotfix1.3.2-nouvelle_api_zoho", column: 2});
-var us6178 = staging.branch({name: "US6178-image_certification", column: 7});
+var master = gitgraph.branch({ name: "MASTER", column: 1, showLabel: false, /*color: colorMaster*/});
+var staging = gitgraph.branch({name: "STAGING", column: 5, showLabel: false, /*color: colorStating*/}); // orphanbranch
+var us6170 = staging.branch({name: "US6170-nettoyage_git", column: 6, showLabel: false, /*color: colorUs*/});
+var us6115 = staging.branch({name: "US6115-ajout_colonnes_dashboard", column: 7, showLabel: false, /*color: colorUs*/});
+var us6145 = staging.branch({name: "US6145-invite_mail", column: 8, showLabel: false, /*color: colorUs*/});
+var hotfix131 = master.branch({name: "HOTFIX1.3.1-nom_agence_caract_spé", column: 2, showLabel: false, /*color: colorHotfix*/});
+var us6142 = staging.branch({name: "US6142-pixel_tracking_maintenance", column: 6, showLabel: false, /*color: colorUs*/});
+var release140 = staging.branch({name: "RELEASE1.4.0", column: 3, showLabel: false, /*color: colorRelease*/});
+var hotfix132 = master.branch({name: "HOTFIX1.3.2-nouvelle_api_zoho", column: 2, showLabel: false, /*color: colorHotfix*/});
+var us6178 = staging.branch({name: "US6178-image_certification", column: 7, showLabel: false, /*color: colorUs*/});
 
 /* ***** */
 staging.commit({
