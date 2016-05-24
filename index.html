@@ -18,50 +18,49 @@
 
     <div id="explications">
       <h2>A faire sur le git</h2>
-        <p>
-          <ul>
-            <li><strong>MASTER</strong> : Dessus la version qui est en cours en prod.</li>
-            <li><strong>STAGING</strong> : (anciennement DEV) Tout le code pour la prochaine version (de facon stable).</li>
-            <li><strong>STORY</strong> : Branch correspondant au développement pour une story de Mingle.</li>
-            <li><strong>HOTFIX</strong> : Bug important corrigé directement pour la prod.</li>
-            <li><strong>RELEASE</strong> : Branch pour les MET, permet de séparer la version qui va etre deployée des développements en cours.</li>
-          </ul>
+      <p>
+        <ul>
+          <li><strong>MASTER</strong> : Dessus la version qui est en cours en prod.</li>
+          <li><strong>STAGING</strong> : (anciennement DEV) Tout le code pour la prochaine version (de facon stable).</li>
+          <li><strong>STORY</strong> : Branch correspondant au développement pour une story de Mingle.</li>
+          <li><strong>HOTFIX</strong> : Bug important corrigé directement pour la prod.</li>
+          <li><strong>RELEASE</strong> : Branch pour les MET, permet de séparer la version qui va etre deployée des développements en cours.</li>
+        </ul>
 
-          <ul>
-            <li>On tire toujours les branchs depuis <strong>Staging</strong> (sauf pour des hotfix en PROD).</li>
-            <li>Chaque branch correspond à une story Mingle. Elle doit être nommée suivant la convention suivante : US<em>numéro de la story sous Mingle</em>-<em>
-              nom court</em> (exemple : <strong>US6178-image_certification</strong>)</li>
-            <li>Chaque message de commit doit commencer ainsi : US<em>num story</em> <em>message</em> (exemple: <strong>US6178 mon message de commit</strong>)</li>
-            <li>Pour pouvoir merged sans effet de bord : 
-              <ul>
-                <li>Une fois notre développement terminé : on met a jour la branch Staging</li>
-                <li>On fait un merge de Staging sur notre branch, on corrige les eventuels conflits et on vérifie que tout fonctionne.</li>
-                <li>On vérifie qu'il n'y a pas eu de nouveau commit sur la branch Staging. S'il n'y en a pas de nouveau, on merge notre branch sur Staging.</li>
-                <li>Si il y a eu de nouveau commit, on re-merge Staging sur notre branch, on corrige s'il y a des conflits et on re-test. S'il n'y a pas eu de nouveau commit a ce moment là, on merge notre branch sur Staging. Sinon on recommence jusqu'à pouvoir merger sur Staging.</li>
-              </ul>
-            </li>
-            <li>Quand on merge a <strong>Staging</strong>, il faut mettre le tag suivent la convention suivante F<em>numéro de la feature (sous Mingle)</em>-<em>un nom court</em> (exemple: <strong>F3160-RSSToEmail</strong>). Vérifier qu'il n'existe pas déja, si c'est le cas reprenez le même. </li>
-          </ul>
-    
-          <ul>
-            <li>En cas de bug constaté en prod et bloquant (càd : a corriger très rapidement), on tire une branch depuis la branch Master. La branch se nomme suivant la convention suivante : HOTFIX<em>numéro de la version suivante</em>-<em>nom court pour le bug</em> (exemple : si là version actuelle est 1.3.0 et que c'est le premier hotfix : <strong>HOTFIX1.3.1-nom_agence_caract_spé</strong>)</li>
-            <li>Dés que la correction est faite et vérifiée, on merge sur la branch Master et on ajoute le tag de version (exemple : <strong>v1.3.1</strong>) et sur la branch Staging avec le même tag de version.</li>
-          </ul>
+        <ul>
+          <li>On tire toujours les branchs depuis <strong>Staging</strong> (sauf pour des hotfix en PROD).</li>
+          <li>Chaque branch correspond à une story Mingle. Elle doit être nommée suivant la convention suivante : US<em>numéro de la story sous Mingle</em>-<em>nom court</em> (exemple : <strong>US6178-image_certification</strong>)</li>
+          <li>Chaque message de commit doit commencer ainsi : US<em>num story</em> <em>message</em> (exemple: <strong>US6178 mon message de commit</strong>)</li>
+          <li>Pour pouvoir merged sans effet de bord : 
+            <ul>
+              <li>Une fois notre développement terminé : on met a jour la branch Staging</li>
+              <li>On fait un merge de Staging sur notre branch, on corrige les eventuels conflits et on vérifie que tout fonctionne.</li>
+              <li>On vérifie qu'il n'y a pas eu de nouveau commit sur la branch Staging. S'il n'y en a pas de nouveau, on merge notre branch sur Staging.</li>
+              <li>Si il y a eu de nouveau commit, on re-merge Staging sur notre branch, on corrige s'il y a des conflits et on re-test. S'il n'y a pas eu de nouveau commit a ce moment là, on merge notre branch sur Staging. Sinon on recommence jusqu'à pouvoir merger sur Staging.</li>
+            </ul>
+          </li>
+          <!-- <li>Quand on merge a <strong>Staging</strong>, il faut mettre le tag suivent la convention suivante F<em>numéro de la feature (sous Mingle)</em>-<em>un nom court</em> (exemple: <strong>F3160-RSSToEmail</strong>). Vérifier qu'il n'existe pas déja, si c'est le cas reprenez le même. </li> -->
+        </ul>
+  
+        <ul>
+          <li>En cas de bug constaté en prod et bloquant (càd : a corriger très rapidement), on tire une branch depuis la branch Master. La branch se nomme suivant la convention suivante : HOTFIX<em>numéro de la version suivante</em>-<em>nom court pour le bug</em> (exemple : si là version actuelle est 1.3.0 et que c'est le premier hotfix : <strong>HOTFIX1.3.1-nom_agence_caract_spé</strong>)</li>
+          <li>Dés que la correction est faite et vérifiée, on merge sur la branch Master et on ajoute le tag de version (exemple : <strong>v1.3.1</strong>) <!-- et sur la branch Staging avec le même tag de version. --></li>
+        </ul>
 
-          <ul>
-            <li>Lorsque tous les developpement pour une version ont été fait et tester, on tire une branch de type release à partir du dernier commit de Staging. Elle doit etre nommée suivant la convention suivante : RELEASE<em>numéro de version</em> (exemple : <strong>RELEASE1.4.0</strong>). Cette branch sert à faire les changement pour la version (typiquement le numéro de version). Elle doit régulierement etre mergée sur Staging (!interdit de merger Staging sur cette branch de release) pour rapporter les derniers correctifs (ex : wording). C'est elle qui va être déployée sur le serveur de Test.</li>
-            <li>Une fois que la MET est validé et prete a être mis en prod, on la merge une derniere fois avec Staging. Et on la merge avec la branch Master, on met un tag de version (exemple : v1.4.0) et c'est ce commit que l'on deploie en Prod.</li>
-          </ul>
-        </p>
-      <h2>A faire sur mingle</h2>
-        <p>Une colonne <strong>Merged</strong> a été ajoutée à Mingle. La story est dans cette colonne quand elle a été mergée correctement (cf plus haut) à la branch <strong>Staging</strong> et que l'on attend la démo pour la montrer au PO/Client pour valider qu'elle a été correctement faite. </p>
-        <p>La story passera a <strong>Done</strong> quand :
-          <ul>
-            <li>La story est finie et validée par le Po/Client.</li>
-            <li>Mergée à la branch <strong>Staging</strong> sans conflit et que ca fonctionne toujours.</li>
-            <li>La branch est supprimée de github.</li>
-          </ul>
-        </p>
+        <ul>
+          <li>Lorsque tous les developpement pour une version ont été fait et tester, on tire une branch de type release à partir du dernier commit de Staging. Elle doit etre nommée suivant la convention suivante : RELEASE<em>numéro de version</em> (exemple : <strong>RELEASE1.4.0</strong>). Cette branch sert à faire les changement pour la version (typiquement le numéro de version). Elle doit régulierement etre mergée sur Staging (!interdit de merger Staging sur cette branch de release) pour rapporter les derniers correctifs (ex : wording). C'est elle qui va être déployée sur le serveur de Test.</li>
+          <li>Une fois que la MET est validé et prete a être mis en prod, on la merge une derniere fois avec Staging. Et on la merge avec la branch Master, on met un tag de version (exemple : v1.4.0) et c'est ce commit que l'on deploie en Prod.</li>
+        </ul>
+      </p>
+      <!-- <h2>A faire sur mingle</h2>
+      <p>Une colonne <strong>Merged</strong> a été ajoutée à Mingle. La story est dans cette colonne quand elle a été mergée correctement (cf plus haut) à la branch <strong>Staging</strong> et que l'on attend la démo pour la montrer au PO/Client pour valider qu'elle a été correctement faite. </p>
+      <p>La story passera a <strong>Done</strong> quand :
+        <ul>
+          <li>La story est finie et validée par le Po/Client.</li>
+          <li>Mergée à la branch <strong>Staging</strong> sans conflit et que ca fonctionne toujours.</li>
+          <li>La branch est supprimée de github.</li>
+        </ul>
+      </p> -->
     </div>
     
     <script src="lib/gitgraph.js"></script>

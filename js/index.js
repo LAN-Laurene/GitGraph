@@ -76,9 +76,7 @@ us6170.commit({
 });
 
 us6170.merge(staging, {
-  tag: "F3156-FreeTrial",
   dotColor: colorStating,
-  tagColor: colorStating,
   messageColor: colorStating,
 });
 
@@ -102,9 +100,7 @@ hotfix131.merge(master, {
 });
 
 hotfix131.merge(staging, {
-  tag: "v1.3.1",
   dotColor: colorStating,
-  tagColor: colorStating,
   messageColor: colorStating,
 });
 
@@ -143,9 +139,7 @@ us6142.commit({
 });
 
 us6115.merge(staging, {
-  tag: "F3156-FreeTrial",
   dotColor: colorStating,
-  tagColor: colorStating,
   messageColor: colorStating,
 });
 
@@ -155,9 +149,7 @@ staging.merge(us6145, {
 });
 
 us6145.merge(staging, {
-  tag: "F3156-FreeTrial & v1.4.0",
   dotColor: colorStating,
-  tagColor: colorStating,
   messageColor: colorStating,
 });
 
@@ -242,9 +234,7 @@ us6142.commit({
 });
 
 us6142.merge(staging, {
-  tag: "F3160-RSSToEmail",
   dotColor: colorStating,
-  tagColor: colorStating,
   messageColor: colorStating,
 });
 
